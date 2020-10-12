@@ -1,0 +1,7 @@
+{
+  "name": "Crooms Art Festival",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
