@@ -33,6 +33,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Category from './pages/Category';
 
 const App: React.FC = () => (
   <IonApp>
@@ -41,19 +42,20 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/home" component={Tab1} exact={true} />
           <Route path="/gallery" component={Tab2} exact={true} />
+          <Route path="/gallery/:category" component={Category} />
           <Route path="/vote" component={Tab3} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/home">
+        <IonTabBar mode="ios" slot="bottom" style={{paddingTop: '10px', paddingBottom: '15px'}}>
+          <IonTabButton tab="tab1" href="/home" mode="ios">
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/gallery">
+          <IonTabButton tab="tab2" href="/gallery" mode="ios">
             <IonIcon icon={image} />
             <IonLabel>Gallery</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/vote">
+          <IonTabButton tab="tab3" href="/vote" mode="ios">
             <IonIcon icon={archive} />
             <IonLabel>Vote</IonLabel>
           </IonTabButton>
