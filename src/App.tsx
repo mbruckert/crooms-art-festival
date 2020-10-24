@@ -34,6 +34,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Category from './pages/Category.js';
+import Welcome from './pages/Welcome.js';
 
 const App: React.FC = () => (
   <IonApp>
@@ -44,7 +45,7 @@ const App: React.FC = () => (
           <Route path="/gallery" component={Tab2} exact={true} />
           <Route path="/gallery/:category" component={Category} />
           <Route path="/vote" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/" component={Welcome}  exact={true} />
         </IonRouterOutlet>
         <IonTabBar mode="ios" slot="bottom" style={{paddingTop: '10px', paddingBottom: '15px'}}>
           <IonTabButton tab="tab1" href="/home" mode="ios">
