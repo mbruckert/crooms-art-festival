@@ -18,17 +18,17 @@ const Tab2: React.FC = () => {
                 <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Traditional Art</h4>
               </IonText>
             </IonItem>
-            <IonItem className="ion-no-padding" button={true} mode="ios">
+            <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/gallery/literary"}>
               <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
                 <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Literary Works</h4>
               </IonText>
             </IonItem>
-            <IonItem className="ion-no-padding" button={true} mode="ios">
+            <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/gallery/digital"}>
               <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
                 <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Digital Art</h4>
               </IonText>
             </IonItem>
-            <IonItem className="ion-no-padding" button={true} mode="ios">
+            <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/gallery/photography"}>
               <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
                 <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Photography</h4>
               </IonText>

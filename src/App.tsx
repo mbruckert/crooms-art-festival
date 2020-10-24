@@ -33,7 +33,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Category from './pages/Category';
+import Category from './pages/Category.js';
 
 const App: React.FC = () => (
   <IonApp>
