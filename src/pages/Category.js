@@ -54,10 +54,10 @@ const Category = () => {
     <IonPage>
       <IonHeader mode="ios" collapse="condense" translucent={true}>
         <IonToolbar style={{paddingTop: '20px', paddingBottom: '10px'}}>
-            <IonButtons slot="start">
-            <IonBackButton/>
-            </IonButtons>
-            <IonTitle size="large" style={{fontSize: '30px'}}>{category}</IonTitle>
+        <IonButtons slot="start">
+          <IonBackButton defaultHref="/gallery"></IonBackButton>
+        </IonButtons>
+        <IonTitle>{category}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
