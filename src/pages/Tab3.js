@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { IonContent, IonRadioGroup, IonItemDivider, IonListHeader, IonLabel, IonRadio, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon } from '@ionic/react';
+import { IonContent, IonRadioGroup, IonItemDivider, IonListHeader, IonLabel, IonRadio, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonButton } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 import { brush } from 'ionicons/icons';
@@ -28,43 +28,47 @@ const Tab3 = () => {
   const [selectedPhotos, setSelectedPhotos] = useState("");
 
   useEffect(() => {
+
     db.collection("Festival").doc("voting").get().then(function(doc) {
       setUnlocked(doc.data().allowed);
     });
 
     db.collection("Traditional").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          newTraditional.push(doc.data());
+          newTraditional.push({id: doc.id, data: doc.data()});
       });
       setTraditional(newTraditional);
-      // setSelectedTraditional(newTraditional[0]);
+      setSelectedTraditional(newTraditional[0].id);
+      console.log(newTraditional[0].id);
     });
 
     db.collection("Literary").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          newLiterary.push(doc.data());
+          newLiterary.push({id: doc.id, data: doc.data()});
       });
       setLiterary(newLiterary);
-      // setSelectedTraditional(newTraditional[0]);
+      setSelectedLiterary(newLiterary[0].id);
     });
 
     db.collection("Digital").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          newDigital.push(doc.data());
+          newDigital.push({id: doc.id, data: doc.data()});
       });
       setDigital(newDigital);
-      // setSelectedTraditional(newTraditional[0]);
+      console.log(newDigital);
+      setSelectedDigital(newDigital[0].id);
     });
 
     db.collection("Photos").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          newPhotos.push(doc.data());
+          newPhotos.push({id: doc.id, data: doc.data()});
       });
       setPhotos(newPhotos);
-      // setSelectedTraditional(newTraditional[0]);
+      setSelectedPhotos(newPhotos[0].id);
     });
 
   }, []);
+  
 
   return (
     <IonPage>
@@ -75,6 +79,7 @@ const Tab3 = () => {
       </IonHeader>
       <IonContent fullscreen>
         {unlocked == true &&
+        <div>
           <IonList>
           <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
             <IonListHeader>
@@ -83,50 +88,52 @@ const Tab3 = () => {
 
             {traditional.map((art) =>
               <IonItem>
-                <IonLabel>{art.name}</IonLabel>
-                <IonRadio slot="start" value="biff" />
+                <IonLabel>{art.data.name}</IonLabel>
+                <IonRadio slot="start" value={art.data.id} />
               </IonItem>
             )}
           </IonRadioGroup>
-          <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
+          <IonRadioGroup value={selectedLiterary} onIonChange={e => setSelectedLiterary(e.detail.value)}>
             <IonListHeader>
               <IonLabel>Literary Works</IonLabel>
             </IonListHeader>
 
             {literary.map((art) =>
               <IonItem>
-                <IonLabel>{art.name}</IonLabel>
-                <IonRadio slot="start" value="biff" />
+                <IonLabel>{art.data.name}</IonLabel>
+                <IonRadio slot="start" value={art.data.id} />
               </IonItem>
             )}
           </IonRadioGroup>
 
-          <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
+          <IonRadioGroup value={selectedDigital} onIonChange={e => setSelectedDigital(e.detail.value)}>
             <IonListHeader>
               <IonLabel>Digital Art</IonLabel>
             </IonListHeader>
 
             {digital.map((art) =>
               <IonItem>
-                <IonLabel>{art.name}</IonLabel>
-                <IonRadio slot="start" value="biff" />
+                <IonLabel>{art.data.name}</IonLabel>
+                <IonRadio slot="start" value={art.data.id} />
               </IonItem>
             )}
           </IonRadioGroup>
 
-          <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
+          <IonRadioGroup value={selectedPhotos} onIonChange={e => setSelectedPhotos(e.detail.value)}>
             <IonListHeader>
               <IonLabel>Photography</IonLabel>
             </IonListHeader>
 
             {photos.map((art) =>
               <IonItem>
-                <IonLabel>{art.name}</IonLabel>
-                <IonRadio slot="start" value="biff" />
+                <IonLabel>{art.data.name}</IonLabel>
+                <IonRadio slot="start" value={art.data.id} />
               </IonItem>
             )}
           </IonRadioGroup>
         </IonList>
+        <IonButton expand="block" style={{width: '90%', marginLeft: '5%', marginTop: '30px', marginBottom: '30px'}}>Submit</IonButton>
+        </div>
         }
 
         {unlocked == false &&
