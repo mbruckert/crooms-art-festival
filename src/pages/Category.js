@@ -61,7 +61,7 @@ const Category = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonGrid>
+        <IonGrid className="ion-align-items-center">
         <IonRow>
         {art.map((item) =>
           <IonCol size="12" sizeMd="4" align-self-start>
