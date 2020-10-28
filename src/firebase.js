@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyCAGrHVQalFDSLhLPrJgSmktn6ymgZcCEM",
-    authDomain: "crooms-arts-festival.firebaseapp.com",
-    databaseURL: "https://crooms-arts-festival.firebaseio.com",
-    projectId: "crooms-arts-festival",
-    storageBucket: "crooms-arts-festival.appspot.com",
-    messagingSenderId: "833965826870",
-    appId: "1:833965826870:web:6c4ce773395468cbe8c997"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
 
 firebase.initializeApp(config);

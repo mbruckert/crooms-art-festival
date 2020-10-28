@@ -12,7 +12,7 @@ const Tab2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      <IonList style={{width: '100%', marginTop: '0px'}} className="list">
+        <IonList style={{width: '100%', marginTop: '0px'}} className="list ion-no-padding">
             <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/gallery/traditional"}>
               <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
                 <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Traditional Art</h4>
