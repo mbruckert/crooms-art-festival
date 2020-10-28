@@ -37,6 +37,8 @@ import './theme/variables.css';
 import Category from './pages/Category.js';
 import Welcome from './pages/Welcome.js';
 import Results from './pages/Results';
+import Schedule from './pages/Schedule';
+import Map from './pages/Map';
 
 const App: React.FC = () => (
   <IonApp>
@@ -48,6 +50,8 @@ const App: React.FC = () => (
           <Route path="/gallery/:category" component={Category} />
           <Route path="/vote" component={Tab3} exact={true} />
           <Route path="/results" component={Results} exact={true} />
+          <Route path="/schedule" component={Schedule} exact={true} />
+          <Route path="/map" component={Map} exact={true} />
           <Route path="/" component={Welcome} exact={true} />
         </IonRouterOutlet>
         <IonTabBar mode="ios" slot="bottom" style={{paddingTop: '10px', paddingBottom: '15px'}}>
