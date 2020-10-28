@@ -14,6 +14,7 @@ import { ellipse, home, image, square, triangle, archive } from 'ionicons/icons'
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3.js';
+import { CookiesProvider } from 'react-cookie';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,6 +36,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Category from './pages/Category.js';
 import Welcome from './pages/Welcome.js';
+import Results from './pages/Results';
 
 const App: React.FC = () => (
   <IonApp>
@@ -44,8 +46,9 @@ const App: React.FC = () => (
           <Route path="/home" component={Tab1} exact={true} />
           <Route path="/gallery" component={Tab2} exact={true} />
           <Route path="/gallery/:category" component={Category} />
-          <Route path="/vote" component={Tab3} />
-          <Route path="/" component={Welcome}  exact={true} />
+          <Route path="/vote" component={Tab3} exact={true} />
+          <Route path="/results" component={Results} exact={true} />
+          <Route path="/" component={Welcome} exact={true} />
         </IonRouterOutlet>
         <IonTabBar mode="ios" slot="bottom" style={{paddingTop: '10px', paddingBottom: '15px'}}>
           <IonTabButton tab="tab1" href="/home" mode="ios">

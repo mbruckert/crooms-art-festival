@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { IonContent, IonRadioGroup, IonItemDivider, IonListHeader, IonLabel, IonRadio, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonButton } from '@ionic/react';
+import { IonContent, IonRadioGroup, IonItemDivider, IonListHeader, IonLabel, IonRadio, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonButton, IonInput } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 import { brush } from 'ionicons/icons';
 import { db } from '../firebase';
 import Lock from './lock.svg';
+import Voted from './voted.svg';
+import { useCookies } from 'react-cookie';
 
 var newTraditional = [];
 var newLiterary = [];
@@ -14,6 +16,7 @@ var newPhotos = [];
 const Tab3 = () => {
 
   const [unlocked, setUnlocked] = useState(false);
+  const [cookies, setCookie] = useCookies(['voted']);
 
   const [traditional, setTraditional] = useState([]);
   const [selectedTraditional, setSelectedTraditional] = useState("");
@@ -68,8 +71,23 @@ const Tab3 = () => {
     });
 
   }, []);
-  
 
+  function submitVote(){
+    db.collection("Votes").add({
+      traditional: selectedTraditional,
+      literary: selectedLiterary,
+      digital: selectedDigital,
+      photos: selectedPhotos
+    })
+    .then(function(docRef) {
+        setCookie('voted', true);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+  
+  }
+  
   return (
     <IonPage>
       <IonHeader mode="ios" collapse="condense" translucent={true}>
@@ -78,7 +96,13 @@ const Tab3 = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+
         {unlocked == true &&
+
+        <div>
+
+        {!cookies.voted &&
+
         <div>
           <IonList>
           <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
@@ -89,7 +113,7 @@ const Tab3 = () => {
             {traditional.map((art) =>
               <IonItem>
                 <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.data.id} />
+                <IonRadio slot="start" value={art.id} />
               </IonItem>
             )}
           </IonRadioGroup>
@@ -101,7 +125,7 @@ const Tab3 = () => {
             {literary.map((art) =>
               <IonItem>
                 <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.data.id} />
+                <IonRadio slot="start" value={art.id} />
               </IonItem>
             )}
           </IonRadioGroup>
@@ -114,7 +138,7 @@ const Tab3 = () => {
             {digital.map((art) =>
               <IonItem>
                 <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.data.id} />
+                <IonRadio slot="start" value={art.id} />
               </IonItem>
             )}
           </IonRadioGroup>
@@ -127,13 +151,25 @@ const Tab3 = () => {
             {photos.map((art) =>
               <IonItem>
                 <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.data.id} />
+                <IonRadio slot="start" value={art.id} />
               </IonItem>
             )}
           </IonRadioGroup>
         </IonList>
-        <IonButton expand="block" style={{width: '90%', marginLeft: '5%', marginTop: '30px', marginBottom: '30px'}}>Submit</IonButton>
+        <IonButton expand="block" style={{width: '90%', marginLeft: '5%', marginTop: '30px', marginBottom: '30px'}} onClick={submitVote}>Submit</IonButton>
         </div>
+        }
+
+        {cookies.voted &&
+          <div>
+            <img src={Voted} style={{width: '70%', marginLeft: '15%', marginTop: '20px'}} />
+            <h1 style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>Thanks for Voting!</h1>
+            <p style={{width: '80%', marginLeft: '10%', textAlign: 'center', fontWeight: '500', fontSize: '18px'}}>To keep the vote for art pieces fair, we restrict voting to once per person. Thanks for coming to the very first Arts Festival and we will announce the results soon.</p>
+          </div>
+        }
+
+        </div>
+
         }
 
         {unlocked == false &&
