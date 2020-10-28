@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { IonContent, IonHeader, IonPage, IonImg, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButtons, IonBackButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonImg, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButtons, IonBackButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { db } from '../firebase';
 
 var newArt = [];
@@ -61,7 +61,10 @@ const Category = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <IonGrid>
+        <IonRow>
         {art.map((item) =>
+          <IonCol size="12" sizeMd="4" align-self-start>
           <IonCard mode="ios">
             <IonImg loading="lazy" src={item.image}></IonImg>
             <IonCardHeader>
@@ -72,7 +75,10 @@ const Category = () => {
               {item.description}
             </IonCardContent>
           </IonCard> 
+          </IonCol>
         )}
+        </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
