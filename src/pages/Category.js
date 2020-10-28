@@ -41,7 +41,7 @@ const Category = () => {
       });
     } else if(selectedName == "photography"){
       setCategory("Photography");
-      db.collection("Photography").get().then(function(querySnapshot) {
+      db.collection("Photos").get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             newArt.push(doc.data());
         });
