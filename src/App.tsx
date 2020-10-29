@@ -39,6 +39,8 @@ import Welcome from './pages/Welcome.js';
 import Results from './pages/Results';
 import Schedule from './pages/Schedule';
 import Map from './pages/Map';
+import ArtVote from './pages/ArtVote';
+import CostumeVote from './pages/CostumeVote';
 
 const App: React.FC = () => (
   <IonApp>
@@ -49,6 +51,8 @@ const App: React.FC = () => (
           <Route path="/gallery" component={Tab2} exact={true} />
           <Route path="/gallery/:category" component={Category} />
           <Route path="/vote" component={Tab3} exact={true} />
+          <Route path="/vote/art" component={ArtVote} exact={true} />
+          <Route path="/vote/costume" component={CostumeVote} exact={true} />
           <Route path="/results" component={Results} exact={true} />
           <Route path="/schedule" component={Schedule} exact={true} />
           <Route path="/map" component={Map} exact={true} />
