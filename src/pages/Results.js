@@ -3,11 +3,6 @@ import { IonContent, IonHeader, IonPage, IonImg, IonTitle, IonToolbar, IonCard, 
 import { db } from '../firebase';
 
 var traditional = [];
-<<<<<<< Updated upstream
-
-const Results = () => {
-
-=======
 var digital = [];
 var written = [];
 var photos = [];
@@ -27,20 +22,33 @@ const Results = () => {
   const [photosWinner, setPhotosWinner] = useState("");
   const [costumeWinner, setCostumeWinner] = useState("");
 
->>>>>>> Stashed changes
   useEffect(() => {
     db.collection("Votes").get().then(function(querySnapshot) {
       console.log(querySnapshot);
         querySnapshot.forEach(function(doc) {
-            if(traditional.includes(doc.data().traditional)){
-                console.log(doc.data());
-            } else{
-                console.log(doc.data()); 
-            }
+            traditional.push(doc.data().traditional);
+            digital.push(doc.data().digital);
+            written.push(doc.data().literary);
+            photos.push(doc.data().photos);
         });
-<<<<<<< Updated upstream
-      });
-=======
+
+        var traditionalRes = {};
+        traditional.forEach(function(v) {
+          traditionalRes[v] = (traditionalRes[v] || 0) + 1;
+        });
+        setTraditionalResults(traditionalRes);
+        db.collection("Traditional").doc(Object.keys(traditionalRes).reduce((a, b) => traditionalRes[a] > traditionalRes[b] ? a : b)).get().then(function(doc) {
+          setTraditionalWinner(doc.data().artist + " - " + doc.data().name);
+        });
+
+        var digitalRes = {};
+        digital.forEach(function(v) {
+          digitalRes[v] = (digitalRes[v] || 0) + 1;
+        });
+        setDigitalResults(digitalRes);
+        db.collection("Digital").doc(Object.keys(digitalRes).reduce((a, b) => digitalRes[a] > digitalRes[b] ? a : b)).get().then(function(doc) {
+          setDigitalWinner(doc.data().artist + " - " + doc.data().name);
+        });
 
         var writtenRes = {};
         written.forEach(function(v) {
@@ -76,8 +84,8 @@ const Results = () => {
           setCostumeWinner(doc.data().name + " - " + doc.data().costume);
         });
     });
->>>>>>> Stashed changes
   }, []);
+
 
   return (
     <IonPage>
@@ -87,15 +95,11 @@ const Results = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-<<<<<<< Updated upstream
-        
-=======
         Traditional Winner: {traditionalWinner} <br />
         Literary Works Winner: {writtenWinner} <br />
         Digital Winner: {digitalWinner} <br />
         Photography Winner: {photosWinner} <br />
         Costume Contest Winner: {costumeWinner} <br />
->>>>>>> Stashed changes
       </IonContent>
     </IonPage>
   );
