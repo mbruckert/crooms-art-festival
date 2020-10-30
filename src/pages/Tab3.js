@@ -96,89 +96,18 @@ const Tab3 = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-
-        {unlocked == true &&
-
-        <div>
-
-        {!cookies.voted &&
-
-        <div>
-          <IonList>
-          <IonRadioGroup value={selectedTraditional} onIonChange={e => setSelectedTraditional(e.detail.value)}>
-            <IonListHeader>
-              <IonLabel>Traditional Art</IonLabel>
-            </IonListHeader>
-
-            {traditional.map((art) =>
-              <IonItem>
-                <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.id} />
-              </IonItem>
-            )}
-          </IonRadioGroup>
-          <IonRadioGroup value={selectedLiterary} onIonChange={e => setSelectedLiterary(e.detail.value)}>
-            <IonListHeader>
-              <IonLabel>Literary Works</IonLabel>
-            </IonListHeader>
-
-            {literary.map((art) =>
-              <IonItem>
-                <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.id} />
-              </IonItem>
-            )}
-          </IonRadioGroup>
-
-          <IonRadioGroup value={selectedDigital} onIonChange={e => setSelectedDigital(e.detail.value)}>
-            <IonListHeader>
-              <IonLabel>Digital Art</IonLabel>
-            </IonListHeader>
-
-            {digital.map((art) =>
-              <IonItem>
-                <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.id} />
-              </IonItem>
-            )}
-          </IonRadioGroup>
-
-          <IonRadioGroup value={selectedPhotos} onIonChange={e => setSelectedPhotos(e.detail.value)}>
-            <IonListHeader>
-              <IonLabel>Photography</IonLabel>
-            </IonListHeader>
-
-            {photos.map((art) =>
-              <IonItem>
-                <IonLabel>{art.data.name}</IonLabel>
-                <IonRadio slot="start" value={art.id} />
-              </IonItem>
-            )}
-          </IonRadioGroup>
-        </IonList>
-        <IonButton expand="block" style={{width: '90%', marginLeft: '5%', marginTop: '30px', marginBottom: '30px'}} onClick={submitVote}>Submit</IonButton>
-        </div>
-        }
-
-        {cookies.voted &&
-          <div>
-            <img src={Voted} style={{width: '70%', marginLeft: '15%', marginTop: '20px'}} />
-            <h1 style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>Thanks for Voting!</h1>
-            <p style={{width: '80%', marginLeft: '10%', textAlign: 'center', fontWeight: '500', fontSize: '18px'}}>To keep the vote for art pieces fair, we restrict voting to once per person. Thanks for coming to the very first Arts Festival and we will announce the results soon.</p>
-          </div>
-        }
-
-        </div>
-
-        }
-
-        {unlocked == false &&
-          <div>
-            <img src={Lock} style={{width: '70%', marginLeft: '15%', marginTop: '20px'}} />
-            <h1 style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>Voting is Locked</h1>
-            <p style={{width: '80%', marginLeft: '10%', textAlign: 'center', fontWeight: '500', fontSize: '18px'}}>Voting isn't open right now. This means that either the event hasn't started yet, or the voting period is over.</p>
-          </div>
-        }
+      <IonList style={{width: '100%', marginTop: '0px'}} className="list ion-no-padding">
+            <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/vote/art"}>
+              <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
+                <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Art Voting</h4>
+              </IonText>
+            </IonItem>
+            <IonItem className="ion-no-padding" button={true} mode="ios" onClick={() => window.location.href = "/vote/costume"}>
+              <IonText style={{paddingTop: '10px', paddingBottom: '10px'}}>
+                <h4 style={{marginLeft: '20px', marginTop: '10px'}}>Costume Contest Voting</h4>
+              </IonText>
+            </IonItem>
+          </IonList>
       </IonContent>
     </IonPage>
   );

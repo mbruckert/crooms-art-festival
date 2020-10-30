@@ -11,7 +11,7 @@ const Map: React.FC = () => {
         <IonButtons slot="start">
           <IonBackButton defaultHref="/home"></IonBackButton>
         </IonButtons>
-        <IonTitle>Schedule</IonTitle>
+        <IonTitle>Map</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
