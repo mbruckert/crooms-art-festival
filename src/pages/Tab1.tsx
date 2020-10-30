@@ -52,7 +52,7 @@ const Tab1: React.FC = () => {
         </IonCol>
         <IonCol size="12" sizeMd="4">
         <IonCard onClick={() => window.location.href = "/map"} mode="ios">
-        <IonImg src="https://lh3.googleusercontent.com/proxy/isCokMfs1kiAALcygHw6ql0XZLIXv4c0YmwjGWpCUI1PYfxasFdS-0oq9JB1diJi-9bi1FMX3R-6P0gkikfciSuQx_yU1MU4Os9PlXiEn2SrYx1PPh7k7Z0" />
+        <IonImg src="https://lh3.googleusercontent.com/proxy/VV9S-XfJc5aqsie39SRbyOsdoLjC20SVAzqGp18rX-P6DKGyFoXqMgO8b7V_lg3XPXKf4uY97MHpYF_hGI39a4KtTqi-j1w2Nmsz1tiyY37ItPAnXXA" />
           <IonCardHeader>
             <IonCardSubtitle>See Where Art is being Shown</IonCardSubtitle>
             <IonCardTitle>Event Map</IonCardTitle>
